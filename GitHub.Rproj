@@ -1,0 +1,172 @@
+---
+title: "Untitled"
+author: "tiffany60328"
+date: "2020/4/1"
+output: html_document
+---
+```{r}
+vectorExample <-c(2,6,7)
+print(vectorExample)
+```
+
+#用vector儲存
+```{r}
+c("2020-03-31T13:40:55Z",
+"一芳",
+"2",
+"水果茶")
+```
+#用list儲存
+```{r}
+library(lubridate)
+`小明交易1` <- list(
+  ymd_hms("2020-03-31T13:40:55Z"), # Date/Time class
+  "一芳", # character
+  2, # numeric
+  "水果茶" # character
+)
+print(`小明交易1`)
+```
+```{r}
+list(
+  c("108學年第1學期","高級會計學","高等統計學"),
+  c("108學年第2學期","食在拉丁美洲")
+    )
+```
+```{r}
+# list含兩個vectors
+`小明108學年課表A` <- list(
+  c("108-1","高級會計學","高等統計學"),
+  c("108-2","食在拉丁美洲")
+)
+print(`小明108學年課表A`)
+```
+```{r}
+# list含兩個lists
+`小明108學年課表B` <- list(
+  list("108-1","高級會計學","高等統計學"),
+  list("108-2","食在拉丁美洲")
+)
+print(`小明108學年課表B`)
+```
+```{r}
+# list含兩個lists, 子層list又各含兩個vectors
+`小明108學年課表C` <- list(
+  list(
+    semester=c("108-1"),
+    courses=c("高級會計學","高等統計學")
+       ),
+  list(
+    semester=c("108-2"),
+    courses=c("食在拉丁美洲")
+  )
+)
+print(`小明108學年課表C`)
+```
+```{r}
+# list含兩個lists, 子層list又各含兩個vectors
+`小明108學年課表D` <- list(
+  `108學年第1學期`=list(
+    c("108-1"), 
+    c("高級會計學","高等統計學")
+       ),
+  `108學年第2學期`=list(
+    c("108-2"),
+    c("食在拉丁美洲")
+  )
+)
+print(`小明108學年課表C`)
+```
+```{r}
+
+author <- c("Martin老師", "mtlin@gm.ntpu.edu.tw", "2020-03-25T07:17:40Z")
+
+committer <- c("emilyluckey", "emily007@gmail.com", "2020-03-26T08:18:40Z")
+
+message <- c("update")
+```
+```{r}
+commit <- list(
+  author = c("Martin老師", "mtlin@gm.ntpu.edu.tw", "2020-03-25T07:17:40Z"),
+  committer = c("emilyluckey", "emily007@gmail.com", "2020-03-26T08:18:40Z"),
+  message = c("update")
+)
+print(commit)
+```
+```{r}
+browseURL("https://api.github.com/repos/tpemartin/108-2-56-inclass-practice/commits") 
+```
+```{r}
+library(jsonlite) # 不少同學這行會有Error，還記得如何排除嗎？
+toJSON(commit)
+```
+```{r}
+# 108-1 
+course1_1081 <- 
+  list(
+    name="個體經濟學",
+    teacher="Alice",
+    grade=85
+  )
+course2_1081 <-
+  list(
+    name="總體經濟學",
+    teacher="Mark",
+    grade=78
+  )
+`108-1修課記錄` <- 
+  list(
+    course1_1081,
+    course2_1081
+  )
+
+# 108-2
+course1_1082 <- 
+  list(
+    name="作業研究",
+    teacher="Jason",
+    grade=90
+  )
+`108-2修課記錄` <- 
+  list(
+    course1_1082
+  )
+
+# 整合兩學期
+`每學期修課記錄` <- list(
+  `108-1`=`108-1修課記錄`,
+  `108-2`=`108-2修課記錄`
+)
+
+# 完成記錄
+`小明的修課記錄` <- 
+  list(
+    name="小明",
+    semesters=`每學期修課記錄`
+  )
+```
+```{r}
+data1 <- 
+  list(
+    date="2020-03-31",
+    district="台北市",
+    highest temperature=25，
+    lowest temperature=18
+  )
+data2 <- 
+  list(
+    date="2020-04-01",
+    district="新北市",
+    highest temperature=24，
+    lowest temerature=15
+  )
+```
+```{r}
+save(commit,`108-2修課記錄`,file="today.Rda")
+```
+```{r}
+load("today.Rda")
+```
+
+
+
