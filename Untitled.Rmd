@@ -1,0 +1,148 @@
+---
+title: "Untitled"
+author: "tiffany60328"
+date: "4/15/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+listExample <- 
+  list(
+    student="小明",
+    `學期`=list(
+      `108-1`=list(
+        list(
+          name="個體經濟學",
+          teacher="Alice",
+          grade=85
+        )
+      ),
+      `108-2`=list(
+        list(
+          name="總體經濟學",
+          teacher="Mark",
+          grade=78
+        )
+      )
+    )
+  )
+# 有多少位置可選：
+length(listExample)
+```
+```{r}
+listExample[[1]]
+listExample[[2]]
+```
+```{r}
+get1 <- listExample[["學期"]]
+get2 <- listExample["學期"]
+```
+```{r}
+str(get1)
+```
+```{r}
+str(get2)
+```
+```{r}
+get1<-listExample[["學期"]]
+get1$`108-1`->get_layer1
+get_layer1[[1]]->get_layer2
+get_layer2$teacher
+```
+```{r}
+listExample[["學期"]][["108-1"]][[1]]$teacher
+```
+```{r}
+today <- list(
+  list("台北市",
+       highest_temp=c(highest_temp = 25),
+       lowest_temp=c(lowest_temp = 18)),
+  list("新北市",
+       highest_temp=c(highest_temp = 24),
+       lowest_temp=c(lowest_temp = 15)))
+tomorrow <- list(
+  list("台北市",
+       highest_temp=c(highest_temp = 25),
+       lowest_temp=c(lowest_temp = 18)),
+  list("新北市",
+       highest_temp=c(highest_temp = 24),
+       lowest_temp=c(lowest_temp = 15)))
+
+weather <- list(today,tomorrow)
+
+print(weather)
+```
+```{r}
+today[[1]]$highest_temp
+```
+```{r}
+vector1<-c(a=1,b=3,c=4)
+vector1[["a"]]
+```
+```{r}
+a <- c("1","b","TRUE")
+a
+a[[2]] <- "c" # 元素存在: 替換
+a[[4]] <- "7" # 元素不存在： 增加
+a[c(5,6)] <- c("J", "K")
+a
+a[[7]]<-"johnson"
+```
+```{r}
+library(lubridate)
+list1 <- 
+  list(
+    list(
+      name="Jack",
+      birthday=ymd("1998-03-21"),
+      status=c(height=177, weight=80)
+    )
+  )
+
+str(list1)
+```
+
+
+
+```{r}
+# 更改日期
+list1[[1]]$birthday <- ymd("1997-03-21")
+# 新增資料
+list1[[2]] <- list(
+  name="Mary",
+  birthday=ymd("1998-08-24")
+  status="c(height=163, weight=45)
+)
+```
+```{r}
+list1[[2]]$status <- c(height=163, weight=45)
+list1[[1]]$status[["height"]] <- 176
+str(list1)
+```
+
+
+```{r}
+list1[[1]$status<-c(height=176)
+```
+
+```{r}
+str(list1)
+```
+```{r}
+list1[[1]]$birthday
+```
+```{r}
+library(jsonlite)
+fromJSON("https://data.ntpc.gov.tw/od/data/api/54DDDC93-589C-4858-9C95-18B2046CC1FC?$format=json", simplifyDataFrame = F) -> newTaipeiYouBike
+```
+```{r}
+newTaipeiYouBike[[1]][c(3,4,5)]<-NULL
+str(newTaipeiYouBike[[1]])
+```
+
+
+
