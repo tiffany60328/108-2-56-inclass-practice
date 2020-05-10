@@ -1,0 +1,113 @@
+---
+title: "Untitled"
+author: "tiffany60328"
+date: "5/10/2020"
+output: html_document
+---
+
+```{r}
+example$name[
+  pick_after98 & pick_fromTaipeiMetro & pick_bloodB
+]
+```
+
+##98以後出生不住在大台北
+```{r}
+example[c("name","birthday","residence")]
+
+example$name[
+  pick_after98 | !pick_fromTaipeiMetro
+]
+```
+```{r}
+library(stringr)
+library(glue)
+```
+```{r}
+str_sub("410873002", 5, 6)
+```
+```{r}
+heartSutra <- c("舍利子，色不異空，空不異色；色即是空，空即是色。")
+str_view_all(heartSutra,"色") # 檢視
+str_count(heartSutra,"色") # 計數
+```
+```{r}
+install.packages("htmlwidgets")
+```
+```{r}
+studentIds <- c("410873029","410773005","410772035","410562123")
+# 取出學號中的入學屆為107或108
+str_view_all(studentIds,"(107|108)")
+
+str_view_all(studentIds, "107|108") # 可不寫()
+
+# 是否來自107或108學屆
+str_detect(studentIds, "107|108")
+```
+```{r}
+strip1 <- "[0-9]"
+strip2 <- "(櫻桃|777|紅心)" # 字群組合strip因為等下放中間所以用()括起來
+strip3 <- "[A-Z]"
+myRegexSlotMachine <- paste0(strip1,strip2,strip3)
+print(myRegexSlotMachine)
+```
+```{r}
+headline <- "資科系的謝陳官乃飛鳶書院三大名師，其中謝無雙的策略運算，陳大器的數理資科學，及官求敗的運算成本更是打通演算思維任督二脈的三大好課。書院目前有陳一、陳二、陳三四這三名學生。"
+```
+```{r}
+# 顯示所有符合規則的
+str_view_all(headline, "謝陳官") # 固定字組
+str_count(headline,"謝陳官")
+
+str_view_all(headline, "[謝陳官]") # 有1個strip: 出象有3個可能字元 
+str_count(headline, "[謝陳官]")
+
+str_view_all(headline, "謝無雙|官求敗") # 有1個strip，出象有2個字組 
+str_count(headline, "謝無雙|官求敗")
+
+str_view_all(headline, "陳[^官]") # 固定字元＋有1個strip： 出象為排官的字元
+str_count(headline, "陳[^官]")
+```
+```{r}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓',
+  '新竹市北區竹光路99號',
+  '金門縣金城鎮賢庵里山前33號',
+  '臺中市南屯區工業區二十四路23號1樓')
+```
+
+```{r}
+strip1<-strip2<-strip3<-"[0-9]"
+strip4<-"號"
+myRegexSlotMachine <- "[0-9]+號"
+print(myRegexSlotMachine)
+str_view_all(addresses,myRegexSlotMachine)
+str_extract(addresses,myRegexSlotMachine)
+
+str_view_all(addresses,"[0-9]+") # 樓號也會選到
+```
+```{r}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓'
+  )
+```
+```{r}
+strip1 <- strip2 <- strip3 <- "[0-9]"
+strip4 <- "號"
+myRegexSlotMachine <- paste0(strip1,strip2,strip3,strip4)
+print(myRegexSlotMachine)
+str_extract(addresses,myRegexSlotMachine)
+```
+```{r}
+phrase <- c("唧唧复唧唧")
+```
+```{r}
+# 目標是前面的唧唧
+target_regex <- "唧唧"
+pattern <- glue::glue("^{target_regex}")
+print(pattern)
+str_view(phrase, pattern) 
+```
+
